@@ -1,0 +1,16 @@
+# Editor de código
+.idea/
+.vscode/
+
+# Sistema operativo macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Iconos de macOS
+Icon?
+._*
+
+# Archivos temporales generados por el sistema
+.Spotlight-V100
+.Trashes
