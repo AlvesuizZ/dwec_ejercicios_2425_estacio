@@ -2,7 +2,7 @@
 const nombres = ["Ana", "Sergio", "Ana"];
 const tlf = ["123456789", "987654321", "555555555"];
 
-function buscarTelefonoPorNombre(nombre) {
+function app(nombre) {
     let tlFind = [];
     
     for (let i = 0; i < nombres.length; i++) {
@@ -25,4 +25,4 @@ function buscarTelefonoPorNombre(nombre) {
 
 let searchName = prompt("Introduce el nombre de la persona para buscar su teléfono:");
 
-buscarTelefonoPorNombre(searchName);
+app(searchName);
