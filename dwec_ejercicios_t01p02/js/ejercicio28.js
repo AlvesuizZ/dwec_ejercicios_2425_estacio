@@ -34,23 +34,37 @@ if (seguir) {
     }
     if(hoy.getMonth() > cumple.getMonth()){
         year2 = hoy.getFullYear() + 1
+        let fechaAyda = new Date(year2, (month-1), day)
+        let calc;
+        calc = (fechaAyda - hoy)
+        let total = Math.round(calc/(1000*60*60*24))
+
+    console.log(total)
     }else if(hoy.getMonth() < cumple.getMonth()){
         year2 = hoy.getFullYear()
+        let fechaAyda = new Date(year2, (month-1), day)
+        let calc;
+        calc = (fechaAyda - hoy)
+        let total = Math.round(calc/(1000*60*60*24))
+        console.log(total)
     }
     if (hoy.getMonth() == cumple.getMonth()){
         if(hoy.getDate() < cumple.getDate()){
-            year2 = hoy.getFullYear() + 1
+            year2 = hoy.getFullYear() 
+            let fechaAyda = new Date(year2, (month-1), day)
+            let calc;
+            calc = (fechaAyda - hoy)
+            let total = Math.round(calc/(1000*60*60*24))
+            console.log(total)
         }else if(hoy.getDate() > cumple.getDate()){
-            year2 = hoy.getFullYear()
+            year2 = hoy.getFullYear() + 1
+            let fechaAyda = new Date(year2, (month-1), day)
+            let calc;
+            calc = (fechaAyda - hoy)
+            let total = Math.round(calc/(1000*60*60*24))
+            console.log(total)
         }
     }
-
-    let fechaAyda = new Date(year2, (month-1), day)
-    //let fechaAyda2 = new Date(hoy.getFullYear(), month-1, day)
-    let calc = (hoy - fechaAyda)
-    let total = Math.round(calc/(1000*60*60*24))
-
-    console.log(total)
 }
 
 
