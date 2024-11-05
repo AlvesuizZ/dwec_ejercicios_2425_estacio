@@ -2,18 +2,11 @@ function Aula(nAlumnos, id, descripcion) {
     this._nAlmunos = nAlumnos;
     this._id = id;
     this._descripcion = descripcion;
-    this.alumnos = [0];
+    this.alumnos = [nAlumnos];
 
     this.pedirDatosAlumno = () => {
         let exit = false
         let nombre = prompt("Dime tu nombre: ")
-        let dni = prompt("Dime tu dni: ").toUpperCase();
-        let fechaNacimiento = prompt("Dime tu fecha de nacimiento: ")
-        let nota1 = prompt("Dime tu nota de la primera evaluacion: ")
-        let nota2 = prompt("Dime tu nota de la segunda evaluacion: ")
-        let nota3 = prompt("Dime tu nota de la tercera evaluacion: ")
-        let sexo = prompt("Dime tu sexo: ").toUpperCase();
-
         do {
             if (isNaN(nombre)) {
                 exit = true;
@@ -22,7 +15,11 @@ function Aula(nAlumnos, id, descripcion) {
                 nombre = prompt("Dime tu nombre: ")
             }
         } while (!exit);
+
         exit = false;
+
+        let dni = prompt("Dime tu dni: ").toUpperCase();
+
         do {
             if (this.validarDNI(dni) == false) {
                 console.log("El dni pasado por consola no es valido")
@@ -33,7 +30,10 @@ function Aula(nAlumnos, id, descripcion) {
         } while (!exit);
 
         exit = false
+
+        let nota1 = prompt("Dime tu nota de la primera evaluacion: ")
         //validacion de la nota 1
+
         do {
             if (!this.validarNota(nota1)) {
                 console.log("La nota no es valido porfavor agregelo otra vez")
@@ -44,28 +44,38 @@ function Aula(nAlumnos, id, descripcion) {
         } while (!exit);
 
         exit = false
+
+        let nota2 = prompt("Dime tu nota de la segunda evaluacion: ")
+
         //validacion de la nota 2
+
         do {
             if (!this.validarNota(nota2)) {
                 console.log("La nota no es valido porfavor agregelo otra vez")
-                nota1 = prompt("Dime tu nota de la primera evaluacion: ")
+                nota2 = prompt("Dime tu nota de la segunda evaluacion: ")
             } else {
                 exit = true
             }
         } while (!exit);
 
         exit = false
+
+        let nota3 = prompt("Dime tu nota de la tercera evaluacion: ")
+
         //validacion de la nota 3
+
         do {
             if (!this.validarNota(nota3)) {
                 console.log("La nota no es valido porfavor agregelo otra vez")
-                nota1 = prompt("Dime tu nota de la primera evaluacion: ")
+                nota3 = prompt("Dime tu nota de la tercera evaluacion: ")
             } else {
                 exit = true
             }
         } while (!exit);
 
         exit = false
+
+        let sexo = prompt("Dime tu sexo: ").toUpperCase();
 
         do {
             if (!this.validarGenero(sexo)) {
@@ -75,15 +85,33 @@ function Aula(nAlumnos, id, descripcion) {
                 exit = true;
             }
         } while (!exit);
+
         exit = false;
+
+        let fechaNacimiento = prompt("Dime tu fecha de nacimiento: ")
+
         do {
-            if (!validarFecha(fechaNacimiento)) {
+            if (!this.validarFecha(fechaNacimiento)) {
                 console.log("la fecha no es valida por favor introducela de nuevo")
                 fechaNacimiento = prompt("Dime tu fecha de nacimiento(DD/MM/YYYY  DD-MM-YYYY): ")
             } else {
                 exit = true
             }
         } while (!exit);
+        if (this.alumnos.length === nAlumnos-1) {
+            console.log("Ya no puede haber mas alumnos")
+        } else {
+            //dni, nombre, fechaNacimiento, nota1, nota2, nota3, sexo
+            this.alumnos.push(new Alumno(dni, nombre,fechaNacimiento,nota1,nota2,nota3,sexo))
+            return new Alumno(dni, nombre,fechaNacimiento,nota1,nota2,nota3,sexo);
+        }
+    }
+
+    this.mostrarDatos = () => {
+        for (let i= 0; i < this.alumnos.length; i++) {
+            console.log("a")
+            this.alumnos[i].mostrarInformaion();
+        }
     }
 
 
@@ -139,8 +167,7 @@ function Aula(nAlumnos, id, descripcion) {
     
     this.validarFecha = (date) => {
         let sign = "";
-        let fechaParts;
-        if (dateValidator(date)) {
+        if (this.dateValidator(date)) {
             if (date.includes(" ")) {
                 return false;
             }
@@ -153,7 +180,7 @@ function Aula(nAlumnos, id, descripcion) {
             let day = parseInt(fechaParts[0]);
             let month = parseInt(fechaParts[1]);
             let year = parseInt(fechaParts[2]);
-            if (esBisiesto(year) && month === 2 && day <= 29) {
+            if (this.esBisiesto(year) && month === 2 && day <= 29) {
                 console.log("La fecha es valida");
                 return true;
             } else if (month === 2 && day > 28) {

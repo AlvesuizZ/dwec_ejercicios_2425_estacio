@@ -14,8 +14,8 @@ function funcionPrueba1() {
 
     const aula = new Aula(1, 1, "Descripcion");
     aula.pedirDatosAlumno();
+    aula.mostrarDatos();
 }
 funcionPrueba1();
 
 
-  

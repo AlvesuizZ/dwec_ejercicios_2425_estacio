@@ -2,9 +2,9 @@ function Alumno(dni, nombre, fechaNacimiento, nota1, nota2, nota3, sexo) {
     this._dni = dni;
     this._nombre = nombre;
     this._fechaNacimiento = fechaNacimiento;
-    this._nota1 = parseFloat(nota1.toFixed(2));
-    this._nota2 = parseFloat(nota2.toFixed(2));
-    this._nota3 = parseFloat(nota3.toFixed(2));
+    this._nota1 = parseFloat(nota1).toFixed(2);
+    this._nota2 = parseFloat(nota2).toFixed(2);
+    this._nota3 = parseFloat(nota3).toFixed(2);
     this.sexo = sexo;
     this.edad = "";
     this.notaFinal;
