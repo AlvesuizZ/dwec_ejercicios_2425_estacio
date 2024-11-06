@@ -2,7 +2,7 @@ function Aula(nAlumnos, id, descripcion) {
     this._nAlmunos = nAlumnos;
     this._id = id;
     this._descripcion = descripcion;
-    this.alumnos = [nAlumnos];
+    this.alumnos = [];
 
     this.pedirDatosAlumno = () => {
         let exit = false
@@ -98,19 +98,32 @@ function Aula(nAlumnos, id, descripcion) {
                 exit = true
             }
         } while (!exit);
-        if (this.alumnos.length === nAlumnos-1) {
-            console.log("Ya no puede haber mas alumnos")
-        } else {
-            //dni, nombre, fechaNacimiento, nota1, nota2, nota3, sexo
-            this.alumnos.push(new Alumno(dni, nombre,fechaNacimiento,nota1,nota2,nota3,sexo))
-            return new Alumno(dni, nombre,fechaNacimiento,nota1,nota2,nota3,sexo);
+        return new Alumno(dni, nombre,fechaNacimiento,nota1,nota2,nota3,sexo);
+    }
+
+    this.pedirDatos = () =>{
+        for (let i = 0; i < nAlumnos; i++) {
+            this.alumnos.push(this.pedirDatosAlumno())
+            
         }
+    }
+
+    this.mediasNotas = ()=>{
+        let media;
+        let suma = 0;
+        let cont
+        for (let i = 0; i < this.alumnos.length; i++) {
+            suma = suma + this.alumnos[i].calcNotaFinal();;
+            cont ++;   
+        }
+        media = parseFloat(suma/cont).toFixed(2);
+        console.log(media)
     }
 
     this.mostrarDatos = () => {
         for (let i= 0; i < this.alumnos.length; i++) {
             console.log("a")
-            this.alumnos[i].mostrarInformaion();
+            console.log(this.alumnos[i].mostrarInformacion());
         }
     }
 

@@ -12,9 +12,10 @@ function funcionPrueba1() {
     // let alumno2 = new Alumno('87654321', 'Alvaro Estacio', '2004-03-10', 8.5, 7.9, 9.2, 'H');
     // console.log(alumno1.comparar(alumno2)); 
 
-    const aula = new Aula(1, 1, "Descripcion");
-    aula.pedirDatosAlumno();
+    const aula = new Aula(2, 1, "Descripcion");
+    aula.pedirDatos();
     aula.mostrarDatos();
+    aula.mediasNotas();
 }
 funcionPrueba1();
 
