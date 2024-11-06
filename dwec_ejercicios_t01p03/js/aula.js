@@ -108,16 +108,38 @@ function Aula(nAlumnos, id, descripcion) {
         }
     }
 
-    this.mediasNotas = ()=>{
-        let media;
+    this.mediasNotas = () => {
         let suma = 0;
-        let cont
+        let cont = 0;
+
         for (let i = 0; i < this.alumnos.length; i++) {
-            suma = suma + this.alumnos[i].calcNotaFinal();;
-            cont ++;   
+            suma += this.alumnos[i].notaFinal; 
+            cont++;
         }
-        media = parseFloat(suma/cont).toFixed(2);
-        console.log(media)
+
+        const media = (cont > 0) ? parseFloat(suma / cont).toFixed(2) : 0;
+        console.log("Media de las notas finales:", media);
+    }
+
+    this.mejorNota = () => {
+        let mejorAlumno = this.alumnos[0];
+        for (let i = 1; i < this.alumnos.length; i++) {
+            if (this.alumnos[i].notaFinal > mejorAlumno.notaFinal) {
+                mejorAlumno = this.alumnos[i];
+            }
+        }
+        return mejorAlumno;
+    }
+
+    this.porcentajeSuspensos = () => {
+
+        let suspensos = 0;
+        for (let i = 0; i < this.alumnos.length; i++) {
+            if (this.alumnos[i].notaFinal < 5) {
+                suspensos++;
+            }
+        }
+        return ((suspensos / this.alumnos.length) * 100).toFixed(2);
     }
 
     this.mostrarDatos = () => {

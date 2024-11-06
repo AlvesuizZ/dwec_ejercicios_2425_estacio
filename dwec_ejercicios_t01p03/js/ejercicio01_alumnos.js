@@ -65,7 +65,7 @@ function Alumno(dni, nombre, fechaNacimiento, nota1, nota2, nota3, sexo) {
     };
     
     this.calcNotaFinal = () => {
-        return this._notaFinal = parseFloat(((this.nota1 + this.nota2 + this.nota3) / 3).toFixed(2));
+        this._notaFinal = parseFloat(((parseFloat(this.nota1) + parseFloat(this.nota2) + parseFloat(this.nota3)) / 3).toFixed(2));
     };
     
     this.calcularEdad = () => {
