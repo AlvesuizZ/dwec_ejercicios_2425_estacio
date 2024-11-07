@@ -1,8 +1,8 @@
-function Aula(nAlumnos, id, descripcion) {
-    this._nAlmunos = nAlumnos;
+function Aula(_nAlumnos, id, descripcion) {
+    this._nAlmunos = _nAlumnos;
     this._id = id;
     this._descripcion = descripcion;
-    this.alumnos = [];
+    this._alumnos = [];
 
     this.pedirDatosAlumno = () => {
         let exit = false
@@ -102,8 +102,8 @@ function Aula(nAlumnos, id, descripcion) {
     }
 
     this.pedirDatos = () =>{
-        for (let i = 0; i < nAlumnos; i++) {
-            this.alumnos.push(this.pedirDatosAlumno())
+        for (let i = 0; i < _nAlumnos; i++) {
+            this._alumnos.push(this.pedirDatosAlumno())
             
         }
     }
@@ -112,8 +112,8 @@ function Aula(nAlumnos, id, descripcion) {
         let suma = 0;
         let cont = 0;
 
-        for (let i = 0; i < this.alumnos.length; i++) {
-            suma += this.alumnos[i].notaFinal; 
+        for (let i = 0; i < this._alumnos.length; i++) {
+            suma += this._alumnos[i].notaFinal; 
             cont++;
         }
 
@@ -122,10 +122,10 @@ function Aula(nAlumnos, id, descripcion) {
     }
 
     this.mejorNota = () => {
-        let mejorAlumno = this.alumnos[0];
-        for (let i = 1; i < this.alumnos.length; i++) {
-            if (this.alumnos[i].notaFinal > mejorAlumno.notaFinal) {
-                mejorAlumno = this.alumnos[i];
+        let mejorAlumno = this._alumnos[0];
+        for (let i = 1; i < this._alumnos.length; i++) {
+            if (this._alumnos[i].notaFinal > mejorAlumno.notaFinal) {
+                mejorAlumno = this._alumnos[i];
             }
         }
         console.log(mejorAlumno.mostrarInformacion())
@@ -134,13 +134,13 @@ function Aula(nAlumnos, id, descripcion) {
 
     this.porcentajeSuspensos = () => {
         let suspensos = 0;
-        for (let i = 0; i < this.alumnos.length; i++) {
-            if (this.alumnos[i].notaFinal < 5) {
+        for (let i = 0; i < this._alumnos.length; i++) {
+            if (this._alumnos[i].notaFinal < 5) {
                 suspensos++;
             }
         }
-        console.log(((suspensos / this.alumnos.length) * 100).toFixed(2))
-        return ((suspensos / this.alumnos.length) * 100).toFixed(2)
+        console.log(((suspensos / this._alumnos.length) * 100).toFixed(2))
+        return ((suspensos / this._alumnos.length) * 100).toFixed(2)
     }
 
     this.mostrarSuspensosAprobados = () => {
@@ -151,8 +151,8 @@ function Aula(nAlumnos, id, descripcion) {
     }
 
     this.mostrarDatos = () => {
-        for (let i= 0; i < this.alumnos.length; i++) {
-            console.log(this.alumnos[i].mostrarInformacion());
+        for (let i= 0; i < this._alumnos.length; i++) {
+            console.log(this._alumnos[i].mostrarInformacion());
         }
     }
 
