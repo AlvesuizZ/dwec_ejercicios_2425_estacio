@@ -59,7 +59,7 @@ function funcionPrueba2(){
                 aula.porcentajeSuspensos();
                 break;
             case 5:
-                aula.mostrarSuspensosAprobados();
+                console.log(aula.mostrarSuspensosAprobados());
                 break;
             case 6:
                 exit = true;

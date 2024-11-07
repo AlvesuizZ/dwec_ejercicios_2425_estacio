@@ -110,15 +110,14 @@ function Aula(_nAlumnos, id, descripcion) {
 
     this.mediasNotas = () => {
         let suma = 0;
-        let cont = 0;
 
         for (let i = 0; i < this._alumnos.length; i++) {
             suma += this._alumnos[i].notaFinal; 
-            cont++;
         }
 
-        const media = (cont > 0) ? parseFloat(suma / cont).toFixed(2) : 0;
+        const media = (_nAlumnos > 0) ? parseFloat(suma / _nAlumnos).toFixed(2) : 0;
         console.log("Media de las notas finales:", media);
+        return media;
     }
 
     this.mejorNota = () => {
@@ -147,7 +146,7 @@ function Aula(_nAlumnos, id, descripcion) {
         const suspensos = this.porcentajeSuspensos();
         const aprobados = (100 - suspensos).toFixed(2);
         
-        return console.log(`Porcentaje de Aprobados: ${aprobados}%, Porcentaje de Suspensos: ${suspensos}%`);
+        return `Porcentaje de Aprobados: ${aprobados}%, Porcentaje de Suspensos: ${suspensos}%`;
     }
 
     this.mostrarDatos = () => {
@@ -222,21 +221,29 @@ function Aula(_nAlumnos, id, descripcion) {
             let day = parseInt(fechaParts[0]);
             let month = parseInt(fechaParts[1]);
             let year = parseInt(fechaParts[2]);
-            if (this.esBisiesto(year) && month === 2 && day <= 29) {
-                console.log("La fecha es valida");
-                return true;
-            } else if (month === 2 && day > 28) {
-                console.log("La fecha no es valida");
-                return false;
-            } else {
-                console.log("La fecha introducida es valida");
-                return true;
-            }
+            const diasPorMes = [31, this.esBisiesto(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (day < 1 || day > diasPorMes[month - 1]) return false;
+            return true;
         } else {
             console.log("La fecha no es valida");
             return false;
         }
     }
+
+    Object.defineProperty(this, 'nalumnos', {
+        get: () => { return this._nAlmunos; },
+        set: (value) => { this._nAlmunos = value; }
+    });
+
+    Object.defineProperty(this, 'id', {
+        get: () => { return this._id; },
+        set: (value) => { this._id = value; }
+    });
+
+    Object.defineProperty(this, 'descripcion', {
+        get: () => { return this._descripcion; },
+        set: (value) => { this._descripcion = value; }
+    });
     
 }
 
