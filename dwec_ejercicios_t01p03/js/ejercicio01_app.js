@@ -16,7 +16,60 @@ function funcionPrueba1() {
     aula.pedirDatos();
     aula.mostrarDatos();
     aula.mediasNotas();
+    aula.mejorNota();
+    aula.porcentajeSuspensos();
+    aula.mostrarSuspensosAprobados();
 }
-funcionPrueba1();
+// funcionPrueba1();
 
+
+function funcionPrueba2(){
+    let nalumnos;
+    let opcion
+    let exit = false;
+
+    do {
+        nalumnos = prompt("Dime cuantos alumnos va a ver en tu clase")
+    } while (isNaN(nalumnos));
+    const aula = new Aula(nalumnos, 1, "Descripcion")
+    aula.pedirDatos();
+
+    do {
+        do {
+            opcion = parseInt(prompt(`--------MENU--------
+                1. Mostrar datos
+                2.Media de notas
+                3.Alumno con mejor nota
+                4.% de suspensos
+                5.Balance de suspensos y aprobados
+                6.salir`)) 
+        } while (isNaN(opcion));
+
+        switch (opcion) {
+            case 1:
+                aula.mostrarDatos();
+                break;
+            case 2:
+                aula.mediasNotas();
+                break;
+            case 3:
+                aula.mejorNota();
+                break;
+            case 4:
+                aula.porcentajeSuspensos();
+                break;
+            case 5:
+                aula.mostrarSuspensosAprobados();
+                break;
+            case 6:
+                exit = true;
+                break;
+            default:
+                console.log("A")
+                break;
+        }
+        
+    } while (!exit);
+}
+funcionPrueba2();
 

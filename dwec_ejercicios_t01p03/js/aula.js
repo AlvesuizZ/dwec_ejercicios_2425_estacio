@@ -128,23 +128,30 @@ function Aula(nAlumnos, id, descripcion) {
                 mejorAlumno = this.alumnos[i];
             }
         }
+        console.log(mejorAlumno.mostrarInformacion())
         return mejorAlumno;
     }
 
     this.porcentajeSuspensos = () => {
-
         let suspensos = 0;
         for (let i = 0; i < this.alumnos.length; i++) {
             if (this.alumnos[i].notaFinal < 5) {
                 suspensos++;
             }
         }
-        return ((suspensos / this.alumnos.length) * 100).toFixed(2);
+        console.log(((suspensos / this.alumnos.length) * 100).toFixed(2))
+        return ((suspensos / this.alumnos.length) * 100).toFixed(2)
+    }
+
+    this.mostrarSuspensosAprobados = () => {
+        const suspensos = this.porcentajeSuspensos();
+        const aprobados = (100 - suspensos).toFixed(2);
+        
+        return console.log(`Porcentaje de Aprobados: ${aprobados}%, Porcentaje de Suspensos: ${suspensos}%`);
     }
 
     this.mostrarDatos = () => {
         for (let i= 0; i < this.alumnos.length; i++) {
-            console.log("a")
             console.log(this.alumnos[i].mostrarInformacion());
         }
     }
