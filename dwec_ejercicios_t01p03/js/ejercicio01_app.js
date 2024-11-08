@@ -71,5 +71,40 @@ function funcionPrueba2(){
         
     } while (!exit);
 }
-funcionPrueba2();
+// funcionPrueba2();
+
+function funcionPrueba3(){
+    let nalumnos;
+    let opcion
+    let grupo
+    let exit = false;
+
+    do {
+        nalumnos = prompt("Dime cuantos alumnos va a ver en tu clase")
+    } while (isNaN(nalumnos));
+    const aula = new Aula(nalumnos, 1, "Descripcion")
+    aula.pedirDatos();
+
+    do {
+        do {
+            opcion = parseInt(prompt(`--------MENU--------
+                1. Mostrar todos los alumnos
+                2. Mostrar alumnos por grupo
+                6.salir`)) 
+        } while (isNaN(opcion));
+        switch (opcion) {
+            case 1:
+                aula.mostrarDatos();
+                break;
+            case 2:
+                aula.asignarGrupo();
+                aula.mostrarAlumnoGrupo();
+            
+            default:
+                break;
+        }
+    } while (!exit);
+}
+
+funcionPrueba3();
 

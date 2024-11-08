@@ -8,10 +8,12 @@ function Alumno(dni, nombre, fechaNacimiento, nota1, nota2, nota3, sexo) {
     this._sexo = sexo;
     this._edad = 0;
     this._notaFinal = 0.0;
-    Alumno.prototype.grupo = ""
+    Alumno.prototype._grupo = ""
 
 
-
+    this.agregarAGrupo = (grupo) => {
+        this._grupo = grupo
+    }
 
     this.cambiarNotas = function(newNota1, newNota2, newNota3) {
         this._nota1 = parseFloat(newNota1).toFixed(2);
@@ -90,5 +92,10 @@ function Alumno(dni, nombre, fechaNacimiento, nota1, nota2, nota3, sexo) {
 
     Object.defineProperty(this, 'notaFinal', {
         get: () => { return this._notaFinal; }
+    });
+
+    Object.defineProperty(this, 'grupo', {
+        get: () => { return this._grupo; },
+        set: (value) => {this._grupo = value}
     });
 }

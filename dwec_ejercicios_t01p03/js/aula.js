@@ -6,13 +6,13 @@ function Aula(_nAlumnos, id, descripcion) {
 
     this.pedirDatosAlumno = () => {
         let exit = false
-        let nombre = prompt("Dime tu nombre: ")
+        let nombre = prompt("Dime tu nombre: ");
         do {
             if (isNaN(nombre)) {
                 exit = true;
             } else {
-                console.log("El nombre no es valido porfavor introduzcalo otra vez")
-                nombre = prompt("Dime tu nombre: ")
+                console.log("El nombre no es valido porfavor introduzcalo otra vez");
+                nombre = prompt("Dime tu nombre: ");
             }
         } while (!exit);
 
@@ -99,6 +99,43 @@ function Aula(_nAlumnos, id, descripcion) {
             }
         } while (!exit);
         return new Alumno(dni, nombre,fechaNacimiento,nota1,nota2,nota3,sexo);
+    }
+
+    this.asignarGrupo = () => {
+
+        for (let i = 0; i < this._nAlumnos; i++) {
+            let grupo = ""
+            do {
+                grupo = prompt("A que grupo pertenece el alumno ").toUpperCase(); 
+            } while (grupo !== "GRUPO1" && grupo !== "GRUPO2");
+            this._alumnos[i].grupo = grupo
+        }
+
+        
+        
+
+    }
+
+    this.mostrarAlumnoGrupo = () => {
+        let _grupo1 = []
+        let _grupo2 = []
+
+        for (let i = 0; i < this._nAlumnos; i++) {
+            if (this._alumnos[i]._grupo === "GRUPO1") {
+                _grupo1.push(this._alumnos[i])
+            }else{
+                _grupo2.push(this._alumnos[i])
+            }   
+        }
+        console.log("Alumnos del grupo 1")
+        for (let i = 0; i < this._nAlumnos; i++) {
+            console.log(this._grupo1[i])
+        }
+        console.log("Alumnos del grupo 2")
+        for (let i = 0; i < _nAlumnos; i++) {
+            console.log(this._grupo2[i])
+        }
+
     }
 
     this.pedirDatos = () =>{
