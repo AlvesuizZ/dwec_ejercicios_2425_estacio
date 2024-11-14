@@ -1,5 +1,5 @@
 function Aula(_nAlumnos, id, descripcion) {
-    this._nAlmunos = _nAlumnos;
+    this._nAlumnos = _nAlumnos;
     this._id = id;
     this._descripcion = descripcion;
     this._alumnos = [];
@@ -32,8 +32,6 @@ function Aula(_nAlumnos, id, descripcion) {
         exit = false
 
         let nota1 = prompt("Dime tu nota de la primera evaluacion: ")
-        //validacion de la nota 1
-
         do {
             if (!this.validarNota(nota1)) {
                 console.log("La nota no es valido porfavor agregelo otra vez")
@@ -101,46 +99,115 @@ function Aula(_nAlumnos, id, descripcion) {
         return new Alumno(dni, nombre,fechaNacimiento,nota1,nota2,nota3,sexo);
     }
 
-    this.asignarGrupo = () => {
-
-        for (let i = 0; i < this._nAlumnos; i++) {
+    this.asignarGrupo = (alumno) => {
             let grupo = ""
             do {
                 grupo = prompt("A que grupo pertenece el alumno ").toUpperCase(); 
-            } while (grupo !== "GRUPO1" && grupo !== "GRUPO2");
-            this._alumnos[i].grupo = grupo
-        }
-
-        
-        
-
+            } while (grupo !== "A" && grupo !== "B");
+            alumno.grupo = grupo
     }
 
-    this.mostrarAlumnoGrupo = () => {
-        let _grupo1 = []
-        let _grupo2 = []
+    this.cambiarGrupo = () => {
+        let res = "";
+        for (let i = 0; i < this._alumnos.length; i++) {
+            do {
+                res = prompt(`El alumno ${this._alumnos[i].nombre} esta inscrito en el grupo ${this._alumnos[i].grupo}. Desea cambiarlo (SI o NO)?`).toUpperCase();
+            } while (res !== "SI" && res !== "NO");
 
-        for (let i = 0; i < this._nAlumnos; i++) {
-            if (this._alumnos[i]._grupo === "GRUPO1") {
-                _grupo1.push(this._alumnos[i])
-            }else{
-                _grupo2.push(this._alumnos[i])
-            }   
+            if(res === "SI"){
+                this.asignarGrupo(this._alumnos[i]);
+            }
+            
         }
-        console.log("Alumnos del grupo 1")
-        for (let i = 0; i < this._nAlumnos; i++) {
-            console.log(this._grupo1[i])
+    }
+
+    this.mediaDeGrupo = (grupo) => {
+        let cont = 0;
+        let media = 0;
+        for (let i = 0; i < this._alumnos.length; i++) {
+            if(this._alumnos[i].grupo === grupo){
+                media += this._alumnos[i].notaFinal
+                cont ++;
+            }
         }
-        console.log("Alumnos del grupo 2")
+        media = (media/cont)
+        console.log(`La media del grupo ${grupo} es de: ${media}`)
+    }
+
+    this.mostrarGrupo = (grupo) => {
         for (let i = 0; i < _nAlumnos; i++) {
-            console.log(this._grupo2[i])
+            if(this._alumnos[i].grupo === grupo){
+                console.log(this._alumnos[i].mostrarInformacion());
+            };
+            
         }
-
     }
+
+this.mostrarTodosAlumnoGrupo = () => {
+    let _grupo1 = [];
+    let _grupo2 = [];
+        
+    for (let i = 0; i < this._alumnos.length; i++) {
+        if (this._alumnos[i].grupo === "A") {
+            _grupo1.push(this._alumnos[i]);
+        } else if (this._alumnos[i].grupo === "B") {
+            _grupo2.push(this._alumnos[i]);
+        }
+    }
+    console.log("Alumnos del grupo A");
+    for (let i = 0; i < _grupo1.length; i++) {
+        console.log(_grupo1[i].mostrarInformacion());
+    }
+        console.log("Alumnos del grupo B");
+    for (let i = 0; i < _grupo2.length; i++) {
+        console.log(_grupo2[i].mostrarInformacion());
+    }
+}
+
+    this.eliminarGrupo = (grupo) => {
+        for (let i = 0; i < _nAlumnos; i++) {
+            if(this._alumnos[i].grupo === grupo){
+                this._alumnos[i].grupo = " "
+            } 
+        }
+    }
+
+    this.FailedPerGroup = () => {
+        let _grupo1 = [];
+        let _grupo2 = [];
+        let suspensos1 = 0;
+        let suspensos2 = 0;
+    
+        for (let i = 0; i < this._alumnos.length; i++) {
+            if (this._alumnos[i].grupo === "A") {
+                _grupo1.push(this._alumnos[i]);
+            } else if (this._alumnos[i].grupo === "B") {
+                _grupo2.push(this._alumnos[i]);
+            }
+        }
+        console.log("Suspensos del grupo A:");
+        for (let i = 0; i < _grupo1.length; i++) {
+            if (_grupo1[i].notaFinal < 5) {
+                suspensos1++;
+            }       
+        }
+        console.log(`Porcentaje de suspensos en grupo A: ${(suspensos1 / _grupo1.length * 100).toFixed(2)}%`);
+
+        console.log("Suspensos del grupo B:");
+        for (let i = 0; i < _grupo2.length; i++) {
+            if (_grupo2[i].notaFinal < 5) {
+                suspensos2++;
+            }       
+        }
+        console.log(`Porcentaje de suspensos en grupo B: ${(suspensos2 / _grupo2.length * 100).toFixed(2)}%`);
+    };
+    
+
 
     this.pedirDatos = () =>{
         for (let i = 0; i < _nAlumnos; i++) {
             this._alumnos.push(this.pedirDatosAlumno())
+            this.asignarGrupo(this._alumnos[i]);
             
         }
     }
@@ -216,6 +283,9 @@ function Aula(_nAlumnos, id, descripcion) {
 
         if (isNaN(nota)) {
             console.log("La nota debera ser un numero")
+            return false
+        }else if(nota === ""){
+            console.log("la nota no puede estar vacia")
             return false
         } else if (nota < 0) {
             console.log("La nota no puede ser negativa")

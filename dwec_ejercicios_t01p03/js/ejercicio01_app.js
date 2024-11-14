@@ -74,15 +74,15 @@ function funcionPrueba2(){
 // funcionPrueba2();
 
 function funcionPrueba3(){
-    let nalumnos;
+    let _nAlumnos;
     let opcion
     let grupo
     let exit = false;
 
     do {
-        nalumnos = prompt("Dime cuantos alumnos va a ver en tu clase")
-    } while (isNaN(nalumnos));
-    const aula = new Aula(nalumnos, 1, "Descripcion")
+        _nAlumnos = prompt("Dime cuantos alumnos va a ver en tu clase")
+    } while (isNaN(_nAlumnos));
+    const aula = new Aula(_nAlumnos, 1, "Descripcion")
     aula.pedirDatos();
 
     do {
@@ -90,16 +90,45 @@ function funcionPrueba3(){
             opcion = parseInt(prompt(`--------MENU--------
                 1. Mostrar todos los alumnos
                 2. Mostrar alumnos por grupo
-                6.salir`)) 
+                3. Agragar alumno a un grupo
+                4. Eliminar un grupo
+                6 Calcular media de un grupo
+                8. Calcular % suspensos por grupo
+                0.salir`)) 
         } while (isNaN(opcion));
         switch (opcion) {
             case 1:
                 aula.mostrarDatos();
                 break;
             case 2:
-                aula.asignarGrupo();
-                aula.mostrarAlumnoGrupo();
-            
+                do{
+                    grupo = prompt("Dime que grupo quieres eliminar (A o B)").toUpperCase();
+                } while (grupo !== "A" && grupo !== "B");
+                aula.mostrarGrupo(grupo);
+                break;
+            case 3:
+                    aula.cambiarGrupo();
+                break;
+            case 4:
+                do {
+                    grupo = prompt("Dime que grupo quieres eliminar (A o B)").toUpperCase();
+                } while (grupo !== "A" && grupo !== "B");
+                aula.eliminarGrupo(grupo);
+                break;
+            case 5:
+                aula.mostrarTodosAlumnoGrupo();
+                break;
+            case 6:
+                do {
+                    grupo = prompt("De cual grupo quieres saber la media (A o B)").toUpperCase();
+                } while (grupo !== "A" && grupo !== "B");
+                aula.mediaDeGrupo(grupo);
+                break;
+            case 8:
+                aula.FailedPerGroup();
+                break;
+            case 0:
+                exit = true;
             default:
                 break;
         }
