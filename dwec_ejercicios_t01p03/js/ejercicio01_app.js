@@ -92,7 +92,9 @@ function funcionPrueba3(){
                 2. Mostrar alumnos por grupo
                 3. Agragar alumno a un grupo
                 4. Eliminar un grupo
+                5. Mostrar resumen grupos
                 6 Calcular media de un grupo
+                7. Mejor alumno por grupo
                 8. Calcular % suspensos por grupo
                 0.salir`)) 
         } while (isNaN(opcion));
@@ -123,6 +125,12 @@ function funcionPrueba3(){
                     grupo = prompt("De cual grupo quieres saber la media (A o B)").toUpperCase();
                 } while (grupo !== "A" && grupo !== "B");
                 aula.mediaDeGrupo(grupo);
+                break;
+            case 7:
+                do {
+                    grupo = prompt("De cual grupo quieres saber el mejor alumno").toUpperCase();
+                } while (grupo !== "A" && grupo !== "B");
+                aula.mejorNotaGrupo(grupo)
                 break;
             case 8:
                 aula.FailedPerGroup();

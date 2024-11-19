@@ -166,6 +166,7 @@ this.mostrarTodosAlumnoGrupo = () => {
 
     this.eliminarGrupo = (grupo) => {
         for (let i = 0; i < _nAlumnos; i++) {
+            
             if(this._alumnos[i].grupo === grupo){
                 this._alumnos[i].grupo = " "
             } 
@@ -201,6 +202,35 @@ this.mostrarTodosAlumnoGrupo = () => {
         }
         console.log(`Porcentaje de suspensos en grupo B: ${(suspensos2 / _grupo2.length * 100).toFixed(2)}%`);
     };
+
+    
+    this.mejorNotaGrupo = (grupo) => {
+        let mejoresAlumnos = [];
+        let mejorNota = 0;
+
+        for (let i = 0; i < this._alumnos.length; i++) {
+            if (this._alumnos[i].grupo === grupo) {
+                if (this._alumnos[i].notaFinal > mejorNota) {
+                    mejorNota = this._alumnos[i].notaFinal;
+                    mejoresAlumnos = [this._alumnos[i]];
+                } else if (this._alumnos[i].notaFinal === mejorNota) {
+                    mejoresAlumnos.push(this._alumnos[i]);
+                }
+            }
+        }
+
+        if (mejoresAlumnos.length > 0) {
+            console.log(`Mejores alumnos del grupo ${grupo} con nota ${mejorNota}:`);
+            for (let i = 0; i < mejoresAlumnos.length; i++) {
+                console.log(mejoresAlumnos[i].mostrarInformacion());
+            }
+        } else {
+            console.log(`No hay alumnos en el grupo ${grupo}.`);
+        }
+    
+        return mejoresAlumnos;
+    };
+    
     
 
 
