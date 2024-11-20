@@ -1,0 +1,7 @@
+fichero originales: 
+alumno.js
+aula.js
+
+fichero para grupos:
+alumnoG.js -> añade con prototype grupo, get/set, y función que devuelva true o false para saber si existe grupo, Crear datos 2 que llame pedir datos y punga el grupo a null en caso de que no se pueda poner por defecto
+aulaG.js -> modificar prototype de aula con set vacio para añadri grupo(pedir nombre),métodos para agregar alumno a grupo solo si el alumno no tiene grupo, modificar grupo en este da igual si tiene grupo o no y además ser coherente ocn el código y ordenado
