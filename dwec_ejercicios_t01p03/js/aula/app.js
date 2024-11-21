@@ -24,7 +24,7 @@ function funcionPrueba3(){
             opcion = parseInt(prompt(`--------MENU--------
                 1. Mostrar todos los alumnos
                 2. Mostrar alumnos por grupo
-                3. Agragar alumno a un grupo
+                3. Cambiar alumno a un grupo
                 4. Eliminar un grupo
                 5. Mostrar resumen grupos
                 6 Calcular media de un grupo

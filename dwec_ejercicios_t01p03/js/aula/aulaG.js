@@ -42,7 +42,7 @@ Aula.prototype.asignarGrupos = function () {
         console.log(`Asignando grupo para: ${alumno.nombre})`);
         
         do {
-            grupo = prompt(`A qué grupo deseas asignar a ${alumno.nombre}`).trim();
+            grupo = prompt(`A qué grupo quieres asignar a ${alumno.nombre}`).trim();
             if (this._grupos.has(grupo)) {
                 exit = true;
             } else {
@@ -54,6 +54,68 @@ Aula.prototype.asignarGrupos = function () {
 
     console.log("Asignación de grupos completada.");
 };
+
+Aula.prototype.cambiarGrupo = function () {
+    if (this._alumnos.length === 0) {
+        console.log("No hay alumnos en el aula para cambiar de grupo.");
+        return;
+    }
+
+    if (this._grupos.size === 0) {
+        console.log("No hay grupos disponibles. Por favor, crea grupos primero.");
+        return;
+    }
+
+    this._alumnos.forEach((alumno) => {
+            let exit = false;
+            let nuevoGrupo;
+
+            console.log(`Cambiando grupo para: ${alumno.nombre}`);
+            console.log(`Grupo actual: ${alumno.grupo}`);
+
+
+            const quiereCambiar = confirm(`¿quieres cambiar a ${alumno.nombre} del grupo "${alumno.grupo}"?`);
+
+            if (!quiereCambiar) {
+                console.log(`El alumno ${alumno.nombre} no fue cambiado de grupo.`);
+                return;
+            }
+
+            do {
+                nuevoGrupo = prompt(`A qué grupo quieres mover a ${alumno.nombre}`).trim();
+
+                if (this._grupos.has(nuevoGrupo)) {
+                    if (alumno.grupo !== nuevoGrupo) {
+                        const alumnosEnGrupo = this._alumnos.filter(a => a.grupo === alumno.grupo);
+
+                        if (alumnosEnGrupo.length === 1) {
+                            const confirmacion = confirm(
+                                `El grupo "${alumno.grupo}" quedará sin alumnos. ¿quieres continuar? (Aceptar para continuar, Cancelar para elegir otro grupo)`
+                            );
+
+                            if (!confirmacion) {
+                                console.log("Operación cancelada. El alumno no fue cambiado de grupo.");
+                                continue;
+                            }
+                        }
+
+                        alumno.grupo = nuevoGrupo;
+                        console.log(`El alumno ${alumno.nombre} ha sido movido al grupo: ${nuevoGrupo}`);
+                        exit = true;
+                    } else {
+                        console.log(`El alumno ya pertenece al grupo: ${nuevoGrupo}`);
+                        exit = true;
+                    }
+                } else {
+                    console.log("El grupo no existe. Por favor, introduce uno válido.");
+                }
+            } while (!exit);
+    });
+
+    console.log("Cambio de grupos completado.");
+};
+
+
 
 Aula.prototype.mostrarAlumnosPorGrupo = function (grupo) {
     if (this._grupos.has(grupo)) {
