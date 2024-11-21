@@ -230,7 +230,7 @@ function Aula(_nAlumnos, id, descripcion) {
         }
     }
 
-    Object.defineProperty(this, 'nalumnos', {
+    Object.defineProperty(this, 'nAlumnos', {
         get: () => { return this._nAlmunos; },
         set: (value) => { this._nAlmunos = value; }
     });

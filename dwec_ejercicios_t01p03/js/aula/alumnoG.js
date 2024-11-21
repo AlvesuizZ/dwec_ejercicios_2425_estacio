@@ -1,3 +1,5 @@
+Alumno.prototype._grupo = null;
+
 Object.defineProperty(Alumno.prototype, 'grupo', {
     get: function () {
         return this._grupo || null;
@@ -9,5 +11,5 @@ Object.defineProperty(Alumno.prototype, 'grupo', {
 
 
 Alumno.prototype.mostrarInformacionConGrupo = function () {
-    return `${this.mostrarInformacion()}, Grupo: ${this.grupo}`;
+    return `${this.mostrarInformacion()}, grupo: ${this.grupo}`;
 };

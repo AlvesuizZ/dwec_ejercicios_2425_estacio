@@ -47,7 +47,7 @@ function Alumno(dni, nombre, fechaNacimiento, nota1, nota2, nota3, sexo) {
 
     this.mostrarInformacion = () => {
         return `DNI: ${this._dni}, Nombre: ${this._nombre}, Edad: ${this._edad}, Fecha de Nacimiento: ${this._fechaNacimiento}, 
-            Nota Final: ${this._notaFinal}, Notas: [${this._nota1}, ${this._nota2}, ${this._nota3}], _Sexo: ${this._sexo}, grupo: ${this._grupo}`;
+            Nota Final: ${this._notaFinal}, Notas: [${this._nota1}, ${this._nota2}, ${this._nota3}], _Sexo: ${this._sexo}`;
     };
 
     this.calcularEdad();
