@@ -44,9 +44,7 @@ function funcionPrueba3(){
                     aula.cambiarGrupo();
                 break;
             case 4:
-                do {
-                    grupo = prompt("Dime que grupo quieres eliminar (A o B)").toUpperCase();
-                } while (grupo !== "A" && grupo !== "B");
+                grupo = aula.obtenerGrupoValido();
                 aula.eliminarGrupo(grupo);
                 break;
             case 5:

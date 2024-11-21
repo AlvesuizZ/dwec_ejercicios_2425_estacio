@@ -115,6 +115,24 @@ Aula.prototype.cambiarGrupo = function () {
     console.log("Cambio de grupos completado.");
 };
 
+Aula.prototype.eliminarGrupo = function (grupo) {
+    let alumnoPorGrupo = 0;
+    if (this._grupos.has(grupo)) {
+        for (let i = 0; i < this._nAlmunos; i++) {
+            if(this._alumnos[i].grupo === grupo){
+                alumnoPorGrupo++;
+                this._alumnos[i].grupo = null;
+            }
+        }
+        if(alumnoPorGrupo = 0){
+            this._grupos.delete(grupo);
+            console.log(`Grupo ${grupo} eliminado.`);
+        }
+    } else {
+        console.log("El grupo no existe o contiene alumnos, no se puede eliminar.");
+    }
+};
+
 
 
 Aula.prototype.mostrarAlumnosPorGrupo = function (grupo) {
