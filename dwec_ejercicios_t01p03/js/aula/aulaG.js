@@ -121,10 +121,9 @@ Aula.prototype.eliminarGrupo = function (grupo) {
         for (let i = 0; i < this._nAlmunos; i++) {
             if(this._alumnos[i].grupo === grupo){
                 alumnoPorGrupo++;
-                this._alumnos[i].grupo = null;
             }
         }
-        if(alumnoPorGrupo = 0){
+        if(alumnoPorGrupo === 0){
             this._grupos.delete(grupo);
             console.log(`Grupo ${grupo} eliminado.`);
         }
@@ -133,6 +132,44 @@ Aula.prototype.eliminarGrupo = function (grupo) {
     }
 };
 
+Aula.prototype.resumenGrupos = function () {
+
+        if (this._grupos.size === 0) {
+            console.log("No hay grupos creados.");
+            return;
+        }
+    
+        console.log("Resumen de los grupos:");
+        this._grupos.forEach((grupo) => {
+            const alumnosEnGrupo = this._alumnos.filter(alumno => alumno.grupo === grupo);
+    
+            if (alumnosEnGrupo.length === 0) {
+                console.log(`${grupo}: vacio`);
+            } else {
+                console.log(`${grupo}: ${alumnosEnGrupo.length} alumnos`);
+                alumnosEnGrupo.forEach(alumno => {
+                    console.log(alumno.mostrarInformacionConGrupo());
+                });
+            }
+        });
+};
+
+Aula.prototype.mediaGrupo = function (grupo) {
+    if (this._grupos.size === 0) {
+        console.log("No hay grupos creados.");
+        return;
+    }
+    let sum = 0;
+    let alumnoEnGrupo
+    let cont = 0;
+    this._grupos.forEach((grupo)=>{
+        alumnoEnGrupo = this._alumnos.filter(alumno  => alumno.grupo === grupo)
+        sum = alumnoEnGrupo.notaFinal
+        cont ++;
+    })
+    let media = parseFloat((sum/cont));
+    console.log(`la media del grupo -${grupo} es de: ${media}`)
+}
 
 
 Aula.prototype.mostrarAlumnosPorGrupo = function (grupo) {

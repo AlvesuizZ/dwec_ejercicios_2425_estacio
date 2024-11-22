@@ -48,13 +48,11 @@ function funcionPrueba3(){
                 aula.eliminarGrupo(grupo);
                 break;
             case 5:
-                aula.mostrarTodosAlumnoGrupo();
+                aula.resumenGrupos();
                 break;
             case 6:
-                do {
-                    grupo = prompt("De cual grupo quieres saber la media (A o B)").toUpperCase();
-                } while (grupo !== "A" && grupo !== "B");
-                aula.mediaDeGrupo(grupo);
+                grupo = aula.obtenerGrupoValido();
+                aula.mediaGrupo(grupo);
                 break;
             case 7:
                 do {
