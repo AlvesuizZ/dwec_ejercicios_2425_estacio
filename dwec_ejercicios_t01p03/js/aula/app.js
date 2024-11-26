@@ -12,10 +12,10 @@ function funcionPrueba3(){
     const aula = new Aula(_nAlumnos, 1, "Descripcion")
     do {
         nGrupos = prompt("Dime cuantos grupos va a tener tu aula")
-        for (let i = 0; i < nGrupos; i++) {
-            aula.crearGrupo();
-        }
     } while (nGrupos <= 0 && isNaN(nGrupos));
+    for (let i = 0; i < nGrupos; i++) {
+        aula.crearGrupo();
+    }
     aula.pedirDatos();
     aula.asignarGrupos()
 
@@ -55,17 +55,16 @@ function funcionPrueba3(){
                 aula.mediaGrupo(grupo);
                 break;
             case 7:
-                do {
-                    grupo = prompt("De cual grupo quieres saber el mejor alumno").toUpperCase();
-                } while (grupo !== "A" && grupo !== "B");
-                aula.mejorNotaGrupo(grupo)
+                grupo = aula.obtenerGrupoValido();
+                aula.mejorAlumnoDeGrupo(grupo);
                 break;
             case 8:
-                aula.FailedPerGroup();
+                aula.porcentajeSuspensosPorGrupos();
                 break;
             case 0:
                 exit = true;
             default:
+                console.log("Por favor pon una opcion valida")
                 break;
         }
     } while (!exit);

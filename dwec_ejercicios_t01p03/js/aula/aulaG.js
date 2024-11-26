@@ -159,17 +159,88 @@ Aula.prototype.mediaGrupo = function (grupo) {
         console.log("No hay grupos creados.");
         return;
     }
-    let sum = 0;
-    let alumnoEnGrupo
-    let cont = 0;
-    this._grupos.forEach((grupo)=>{
-        alumnoEnGrupo = this._alumnos.filter(alumno  => alumno.grupo === grupo)
-        sum = alumnoEnGrupo.notaFinal
-        cont ++;
-    })
-    let media = parseFloat((sum/cont));
-    console.log(`la media del grupo -${grupo} es de: ${media}`)
-}
+    const alumnosEnGrupo = this._alumnos.filter(alumno => alumno.grupo === grupo);
+    if (alumnosEnGrupo.length === 0) {
+        console.log(`El grupo ${grupo} no tiene alumnos.`);
+        return;
+    }
+    let sumaNotas = 0;
+    for (const alumno of alumnosEnGrupo) {
+        sumaNotas += alumno.notaFinal;
+    }
+    const media = (sumaNotas / alumnosEnGrupo.length).toFixed(2);
+    console.log(`La media del grupo ${grupo} es: ${media}`);
+};
+
+Aula.prototype.mejorAlumnoDeGrupo = function (grupo) {
+    if (this._grupos.size === 0) {
+        console.log("No hay grupos creados.");
+        return;
+    }
+
+    if (!this._grupos.has(grupo)) {
+        console.log(`El grupo ${grupo} no existe.`);
+        return;
+    }
+
+    const alumnosDelGrupo = this._alumnos.filter((alumno) => alumno.grupo === grupo);
+
+    if (alumnosDelGrupo.length === 0) {
+        console.log(`El grupo ${grupo} no tiene alumnos.`);
+        return;
+    }
+
+    let notaMaxima = 0;
+    for (const alumno of alumnosDelGrupo) {
+        if (alumno.notaFinal > notaMaxima) {
+            notaMaxima = alumno.notaFinal;
+        }
+    }
+
+    const mejoresAlumnos = [];
+    for (const alumno of alumnosDelGrupo) {
+        if (alumno.notaFinal === notaMaxima) {
+            mejoresAlumnos.push(alumno);
+        }
+    }
+
+    console.log(`La nota más alta del grupo "${grupo}" es ${notaMaxima}.`);
+    console.log("Los mejores alumnos del grupo son:");
+    for (const alumno of mejoresAlumnos) {
+        console.log(alumno.mostrarInformacion());
+    }
+};
+
+Aula.prototype.porcentajeSuspensosPorGrupos = function () {
+    if (this._grupos.size === 0) {
+        console.log("No hay grupos creados.");
+        return;
+    }
+
+    for (const grupo of this._grupos) {
+        const alumnosDelGrupo = this._alumnos.filter((alumno) => alumno.grupo === grupo);
+
+        if (alumnosDelGrupo.length === 0) {
+            console.log(`El grupo ${grupo} no tiene alumnos.`);
+            continue;
+        }
+
+        let totalAlumnos = alumnosDelGrupo.length;
+        let suspensos = 0;
+
+
+        for (const alumno of alumnosDelGrupo) {
+            if (alumno.notaFinal < 5) {
+                suspensos++;
+            }
+        }
+
+        let porcentajeSuspensos = (suspensos / totalAlumnos) * 100;
+
+        console.log(`El porcentaje de suspensos en el grupo ${grupo} es: ${porcentajeSuspensos.toFixed(2)}%`);
+    }
+};
+
 
 
 Aula.prototype.mostrarAlumnosPorGrupo = function (grupo) {
