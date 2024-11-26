@@ -12,7 +12,7 @@ function funcionPrueba3(){
     const aula = new Aula(_nAlumnos, 1, "Descripcion")
     do {
         nGrupos = prompt("Dime cuantos grupos va a tener tu aula")
-    } while (nGrupos <= 0 && isNaN(nGrupos));
+    } while (isNaN(nGrupos) || nGrupos <= 0);
     for (let i = 0; i < nGrupos; i++) {
         aula.crearGrupo();
     }
