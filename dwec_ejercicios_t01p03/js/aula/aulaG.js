@@ -111,8 +111,6 @@ Aula.prototype.cambiarGrupo = function () {
                 }
             } while (!exit);
     });
-
-    console.log("Cambio de grupos completado.");
 };
 
 Aula.prototype.eliminarGrupo = function (grupo) {

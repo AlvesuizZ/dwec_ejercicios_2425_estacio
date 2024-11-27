@@ -176,20 +176,23 @@ function Aula(_nAlumnos, id, descripcion) {
     }
 
     this.validarNota = (nota) => {
-
-        if (isNaN(nota)) {
-            console.log("La nota debera ser un numero")
+        if (nota === "" || nota == null) { 
+            console.log("La nota no puede estar vacía")
+            return false
+        } else if (isNaN(nota)) {
+            console.log("La nota debe ser un número")
             return false
         } else if (nota < 0) {
             console.log("La nota no puede ser negativa")
             return false
         } else if (nota > 10) {
-            console.log("La nota no puede ser mayor de 10")
+            console.log("La nota no puede ser mayor a 10")
             return false
         } else {
             return true
         }
     }
+    
 
     this.validarGenero = (sexo) => {
         if (sexo === "H" || sexo === "M" || sexo === "O") {
