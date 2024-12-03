@@ -44,4 +44,12 @@ class Util  {
         }
         return true;
     }
+
+    static validarLibro(libro) {
+    return (libro instanceof Libro)
+    }
+
+    static validarTipoEnvio(tipoDeEnvio) {
+        return (tipoDeEnvio instanceof TipoEnvio)
+    }
 }

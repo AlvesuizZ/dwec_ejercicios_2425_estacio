@@ -42,14 +42,17 @@ class Libro{
     }
 
     set titulo(titulo) {
+        if (!Util.validarTitulo(titulo)) throw new Error("Título inválido");
         this.#titulo = titulo;
     }
     
     set autor(autor) {
+        if (!Util.validarAutor(autor)) throw new Error("Autor inválido");
         this.#autor = autor;
     }
     
     set precio(precio) {
+        if (!Util.validarPrecio(precio)) throw new Error("Precio inválido");
         this.#precio = precio;
     }
 }
@@ -73,7 +76,6 @@ class Ebook extends Libro {
     }
 
     convertirFormato(nuevoFormato) {
-        if(!Util.validarFormato(nuevoFormato)) throw new Error("Formato Invalido");
         this.#formato = nuevoFormato;
     }
 
@@ -86,16 +88,16 @@ class Ebook extends Libro {
     }
 
     get tamanoArchivo() {
-        return this.#tamanoArchivo
+        return this.#tamanoArchivo;
     }
 
     get formato() {
-        return this.#formato
+        return this.#formato;
     }
 
     set tamanoArchivo(nuevoTamanoArchivo) {
         if (!Util.validarTamanoArchivo(tamanoArchivo)) throw new Error("Tamaño invalido");
-        this.#tamanoArchivo = nuevoTamanoArchivo
+        this.#tamanoArchivo = nuevoTamanoArchivo;
     }
 
     set formato(nuevoFormato) {
@@ -138,5 +140,32 @@ class LibroPapel extends Libro {
 
     comprobarStock() {
         return this.#stock > 0
+    }
+
+    get peso() {
+        return this.#peso;
+    }
+
+    get dimensiones() {
+        return this.#dimensiones;
+    }
+
+    get stock() {
+        return this.#stock;
+    }
+
+    set nuevoPeso(peso) {
+        if (!Util.validarPeso(peso)) throw new Error("Peso inválido");
+        this.#peso = peso
+    }
+
+    set nuevasDimensiones(dimensiones) {
+        if (!Util.validarDimensiones(dimensiones)) throw new Error("Dimensiones inválidas");
+        this.#dimensiones = dimensiones
+    }
+
+    set nuevoStock(stock) {
+        if (!Util.validarStock(stock)) throw new Error("Stock inválido");
+        this.#stock = stock
     }
 }
