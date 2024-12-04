@@ -13,7 +13,7 @@ class Util  {
     }
     
     static validarTamanoArchivo(tamanoArchivo) {
-        parseFloat(precio);
+        parseFloat(tamanoArchivo);
         return typeof tamanoArchivo === "number" && tamanoArchivo > 0;
     }
 
