@@ -116,7 +116,7 @@ class LibroPapel extends Libro {
         super (titulo, autor, precio);
 
         if (!Util.validarPeso(peso)) throw new Error("Peso inválido");
-        if (!Util.validarDimensiones(dimensiones)) throw new Error("Dimensiones inválidas");
+        // if (!Util.validarDimensiones(dimensiones)) throw new Error("Dimensiones inválidas");
         if (!Util.validarStock(stock)) throw new Error("Stock inválido");
 
         this.#peso = peso;
@@ -140,6 +140,10 @@ class LibroPapel extends Libro {
 
     comprobarStock() {
         return this.#stock > 0
+    }
+
+    mostrarDatosLibro() {
+        return `${super.mostrarDatosLibro()}, pesa: ${this.#peso}g, sus dimensiones son: ${this.#dimensiones}, y su stock es de: ${this.#stock}`;
     }
 
     get peso() {
@@ -169,3 +173,4 @@ class LibroPapel extends Libro {
         this.#stock = stock
     }
 }
+

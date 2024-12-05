@@ -4,7 +4,7 @@ class TipoEnvio {
 
     constructor(nombre, precio) {
         if(!Util.validarNombre(nombre)) throw new Error("Nombre no valido");
-        if(!Util.validarPrecio(precio)) throw new Error("Precio no valido");
+        // if(!Util.validarPrecio(precio)) throw new Error("Precio no valido");
 
         this.#nombre = nombre;
         this.#precio = precio;

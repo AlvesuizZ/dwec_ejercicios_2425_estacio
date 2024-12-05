@@ -52,4 +52,8 @@ class Util  {
     static validarTipoEnvio(tipoDeEnvio) {
         return (tipoDeEnvio instanceof TipoEnvio)
     }
+
+    static validarNombre(nombreEnvio) {
+        return typeof nombreEnvio === "string" && nombreEnvio.trim().length > 0;
+    }
 }
