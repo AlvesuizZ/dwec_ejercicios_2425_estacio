@@ -37,37 +37,6 @@ function mostrarLibros() {
     });
 }
 
-function seleccionarLibros() {
-    while (true) {
-        const deseaComprar = prompt("¿Desea comprar un libro? (sí/no)").toLowerCase();
-        if (deseaComprar !== "sí") break;
-
-        mostrarLibros();
-        const seleccion =
-            parseInt(prompt("Ingrese el número del libro que desea comprar:")) - 1;
-
-        if (!librosDisponibles[seleccion]) {
-            console.log("Selección inválida. Intente de nuevo.");
-            continue;
-        }
-
-        const libroSeleccionado = librosDisponibles[seleccion];
-
-        if (pedido.librosPedido.includes(libroSeleccionado)) {
-            console.log("Ya ha seleccionado este libro. Elija otro.");
-            continue;
-        }
-
-        if (libroSeleccionado instanceof LibroPapel) {
-            libroSeleccionado.reducirStock();
-        }
-
-        pedido.annadirLibro(libroSeleccionado);
-        console.log(
-            `"${libroSeleccionado.mostrarDatosLibro()}" añadido al pedido.`
-        );
-    }
-}
 
 mostrarLibros();
 seleccionarLibros();
