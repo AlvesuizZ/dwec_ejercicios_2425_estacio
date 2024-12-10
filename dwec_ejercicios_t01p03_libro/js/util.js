@@ -9,7 +9,7 @@ class Util {
 
     static validarPrecio(precio) {
         parseFloat(precio);
-        return typeof precio === "number" && precio > 0;
+        return typeof precio === "number" && precio >= 0;
     }
 
     static validarTamanoArchivo(tamanoArchivo) {
