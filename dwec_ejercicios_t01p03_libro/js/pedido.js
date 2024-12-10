@@ -22,7 +22,7 @@ class Pedido {
                 envioInfo = "Sin envio definido"
             }
     
-            return `Pedido:${librosInfo}\n
+            return `Pedido:\n${librosInfo}\n
             Envío: ${envioInfo}\n
             Precio total sin envío: ${this.#precioTotalSinEnvio.toFixed(2)}€\n
             Descuento aplicado: ${this.#descuento.toFixed(2)}€\n
@@ -42,6 +42,7 @@ class Pedido {
 
     aplicarDescuento(porcentaje) {
         this.#descuento = this.#precioTotalSinEnvio * (porcentaje / 100);
+        console.log("El descuento es de: " + this.#descuento)
     }
 
     calcularTotal() {

@@ -116,7 +116,7 @@ class LibroPapel extends Libro {
         super (titulo, autor, precio);
 
         if (!Util.validarPeso(peso)) throw new Error("Peso inválido");
-        // if (!Util.validarDimensiones(dimensiones)) throw new Error("Dimensiones inválidas");
+        if (!Util.validarDimensiones(dimensiones)) throw new Error("Dimensiones inválidas");
         if (!Util.validarStock(stock)) throw new Error("Stock inválido");
 
         this.#peso = peso;
