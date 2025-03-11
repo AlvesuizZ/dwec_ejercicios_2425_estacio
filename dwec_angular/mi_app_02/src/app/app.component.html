@@ -8,6 +8,47 @@
         <li><app-user></app-user></li>
         <li><app-user></app-user></li>
       </ul>
+      <div>
+        @if (isServerRunning){
+          <span>Si el servidor esta corriendo</span>
+        }else{
+          <span>No esta corriendo</span>
+        }
+      </div>
+      <div>
+        @for (user of users; track user.id){
+          <p>{{ user.name }}</p>
+        }
+      </div>
+      <div [contentEditable]="isEditable"> 
+        Puedes editar este texto si isEditable es true
+      </div>
+      <section (mouseover)="onMouseOver()">
+        Hay un mensaje secreto para ti hover to reveal:
+        {{ message }}
+      </section>
+      <div>
+        <app-user name="Master"></app-user>
+      </div>
+      <div>
+        <app-child (addItemEvent)="addItem($event)"></app-child>
+        <ul>
+          @for (item of items: track $index){
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+      <div>
+        @defer (on viewport){
+          <comments />
+        } @placeholder{
+          <p>Future comments</p>
+        } @loading (minimum 2s){
+          <p>Loading comments...</p>
+        } @error{
+          <p>Error loading commensts</p>
+        }
+      </div>
   </div>
   <router-outlet></router-outlet>
 </main>

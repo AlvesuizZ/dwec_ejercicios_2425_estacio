@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class UserComponent {
   username= 'Yoda';
+  @Input() name= ' ';
+  logoUrl = '/imgs/logo.svg';
+  logoAlt = 'Angular logo'
 }
