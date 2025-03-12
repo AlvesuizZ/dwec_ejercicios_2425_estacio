@@ -1,0 +1,57 @@
+
+    <h1>Hello, {{ title }}</h1>
+
+    <section>
+      <app-user></app-user>
+    </section>
+
+    <ul>
+      <li><app-user></app-user></li>
+      <li><app-user></app-user></li>
+    </ul>
+
+    <div *ngIf="isServerRunning; else notRunning">
+      <span>Si el servidor está corriendo</span>
+    </div>
+    <ng-template #notRunning>
+      <span>No está corriendo</span>
+    </ng-template>
+
+    <div>
+      <p *ngFor="let user of users; trackBy: trackByUserId">{{ user.name }}</p>
+    </div>
+
+    <div [contentEditable]="isEditable">
+      Puedes editar este texto si isEditable es true
+    </div>
+
+    <section (mouseover)="onMouseOver()">
+      Hay un mensaje secreto para ti, hover to reveal:
+      {{ message }}
+    </section>
+
+    <div>
+      <app-user [name]="'Master'"></app-user>
+    </div>
+
+    <div>
+      <app-child (addItemEvent)="addItem($event)"></app-child>
+      <ul>
+        <li *ngFor="let item of items; let i = index">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      @defer(on viewport){
+        <comments></comments>
+      }@placeholder{
+        <p>En breve llegan los comentarios</p>
+      }@loading(minimum 2s){
+        <p>Cargando...</p>
+      }@error{
+        <p>Error con la carga</p>
+      }
+    </div>
+

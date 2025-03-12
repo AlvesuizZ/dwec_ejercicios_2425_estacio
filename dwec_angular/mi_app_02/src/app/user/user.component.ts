@@ -7,8 +7,9 @@ import { Component,Input } from '@angular/core';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
+  title="USER";
   username= 'Yoda';
   @Input() name= ' ';
-  logoUrl = '/imgs/logo.svg';
+  logoUrl = '/img/logo.svg';
   logoAlt = 'Angular logo'
 }

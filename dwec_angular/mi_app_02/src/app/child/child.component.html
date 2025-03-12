@@ -1,1 +1,10 @@
 <button class="btn" (click)="addItem()">Add Item</button>
+<p>Prabando componente child</p>
+@if(bandera){
+  <p>bandera true</p>
+}@else {
+  <p>bandera false</p>
+}
+@for(i of array; track $index){
+  <p>{{ i }}</p>
+}

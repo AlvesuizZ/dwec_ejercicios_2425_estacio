@@ -8,13 +8,15 @@ import { ChildComponent } from './child/child.component';
 import { CommentsComponent } from './comments/comments.component';
 
 import { NgOptimizedImage } from '@angular/common';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     ChildComponent,
-    CommentsComponent
+    CommentsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

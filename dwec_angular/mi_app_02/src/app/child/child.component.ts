@@ -7,6 +7,8 @@ import { Component,Output, EventEmitter } from '@angular/core';
   styleUrl: './child.component.css'
 })
 export class ChildComponent {
+  bandera=false;
+  array=['uno', 'dos', 'tres'];
   @Output() addItemEvent = new EventEmitter<string>();
 
   addItem(){
