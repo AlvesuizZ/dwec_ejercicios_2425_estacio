@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +11,9 @@ import { CommentsComponent } from './comments/comments.component';
 
 import { NgOptimizedImage } from '@angular/common';
 import { HomeComponent } from './home/home.component';
+import { registerLocaleData } from '@angular/common';
+import localEs from '@angular/common/locales/es';
+registerLocaleData(localEs);
 
 @NgModule({
   declarations: [
@@ -21,9 +26,14 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: LOCALE_ID,
+    useValue: 'es-ES'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { CarService } from './services/car.service';
 
 @Component({
   selector: 'app-root',

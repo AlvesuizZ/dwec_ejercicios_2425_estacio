@@ -1,5 +1,5 @@
 <h2>{{ title }}</h2>
-<span>Username: {{ username }}</span><br>
+<span>Username: {{ username | lowercase}}</span><br>
 <span>The users name: {{ name }}</span>
 <span>Preferred Framework: </span>
 <ul>
@@ -11,4 +11,43 @@
         Dynamic image:
         <img [ngSrc]="logoUrl" [alt]="logoAlt" width="32" height="32">
     </li>
+    <label for="Framework">
+      Favourite framework:
+      <input type="text" id="framework" [(ngModel)]="favouriteFramework">
+    </label>
+    <p>Your favourite framework is: {{favouriteFramework}}</p>
+    <button (click)="showFramework()">Show</button>
 </ul>
+
+<h2>Profile Form</h2>
+<form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+  <label>
+    name
+    <input type="text" formControlName="name" name="name" />
+  </label>
+  <br>
+  @if(profileForm.controls.name.invalid && profileForm.controls.name.touched){
+    <span>name is required</span>
+  }
+  <br>
+  <label>
+    email
+    <input type="email" formControlName="email" name="email"/>
+  </label>
+  <br>
+  @if(profileForm.controls.email.invalid && profileForm.controls.email.touched){
+    <span>Please enter a valid email</span>
+  }
+  @if(profileForm.controls.email.errors?.['emailG'] && profileForm.controls.email.touched){
+    <span> The email have to ends with gmail.com</span>
+  }
+  <br>
+  <button type="submit">Submit</button>
+</form>
+
+<p>Name: {{profileForm.value.name}}</p>
+<p>Email: {{profileForm.value.email}}</p>
+
+<p>{{display}}</p>
+<p>El precio de los coches es de  {{precio | currency:'EUR'}}</p>
+
